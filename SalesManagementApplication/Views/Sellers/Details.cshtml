@@ -1,0 +1,107 @@
+﻿@model SalesManagementApplication.Models.Seller
+
+@{
+    ViewData["Title"] = "Details";
+}
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<h1 class="my-4 text-center">Details about @Model.LastName, @Model.Name</h1>
+
+<hr />
+<dl class="row mx-auto mb-3" style="max-width: max-content;">
+    <dt class="col-6 text-center">
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd class="col-6 text-center">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt class="col-6 text-center">
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+    <dd class="col-6 text-center">
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+</dl>
+
+<div class="mt-3 d-flex flex-column align-items-center">
+    <a asp-action="Edit" asp-route-id="@Model?.SellerId" class="link-primary mb-3">Edit</a>
+    <a asp-action="Index" class="link-dark mt-3">Back to List</a>
+</div>
+
+<div id="salesGraph" style="height: 370px; width: 100%;" class="mt-5"></div>
+
+
+<script>
+
+
+    var sales = [];
+    var commission = [];
+
+    var chart = new CanvasJS.Chart("salesGraph", {
+        animationEnabled: true,
+        zoomEnabled: true,
+        theme: "light2",
+        title: {
+            text: "Monthly Sales"
+        },
+        legend: {
+            horizontalAlign: "center",
+            verticalAlign: "bottom",
+            fontSize: 16
+        },
+        axisY: {
+            title: "Euros",
+            titleFontSize: 24,
+            prefix: "€",
+            crosshair: {
+                enabled: true,
+                valueFormatString: "€#,##0.##",
+                snapToDataPoint: true
+            }
+        },
+        axisX: {
+            crosshair: {
+                enabled: true,
+                snapToDataPoint: true
+            }
+        },
+        data: [{
+            type: "bar",
+
+            showInLegend: true,
+            legendText: "Sales",
+            yValueFormatString: "€#,##0.##",
+            xValueFormatString: "MMM YYYY",
+            dataPoints: sales
+        }, {
+            type: "bar",
+            showInLegend: true,
+            legendText: "Commission",
+            yValueFormatString: "€#,##0.##",
+            xValueFormatString: "MMM YYYY",
+            dataPoints: commission
+        }]
+    });
+
+    function addData(data) {
+        if (data) {
+            for (var i = 0; i < data.length; i++) {
+                sales.push({
+                    label: data[i].Month,
+                    y: data[i].TotalSales
+                });
+                console.log(data[i].Commission);
+                commission.push({
+                    label: data[i].Month,
+                    y: data[i].Commission
+                });
+            }
+            chart.render();
+            return;
+        }
+
+    }
+
+    $.getJSON("/sellers/monthlysales/@Model!.SellerId", addData);
+
+</script>

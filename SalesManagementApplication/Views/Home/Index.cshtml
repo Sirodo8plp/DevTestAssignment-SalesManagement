@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section links {
+    <link rel="stylesheet" href="~/css/homepage.css" asp-append-version="true" />
+}
+
+<section class="card__container">
+    <div class="card">
+        <svg class="card__svg">
+            <use href="/symbol-defs.svg#icon-user-tie"></use>
+        </svg>
+        <div class="card__body">
+            <h2>Sellers</h2>
+            <p class="card__info">
+                    @ViewBag.sellersCount
+            </p>
+        </div>
+    </div>
+        <div class="card">
+            <svg class="card__svg">
+                <use href="/symbol-defs.svg#icon-wallet"></use>
+            </svg>
+            <div class="card__body">
+                <h2>Sales</h2>
+                <p class="card__info" style="width: 85%">
+                    @ViewBag.salesSum
+                </p>
+            </div>
+        </div>
+</section>

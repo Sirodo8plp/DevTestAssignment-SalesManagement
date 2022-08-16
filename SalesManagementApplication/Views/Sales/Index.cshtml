@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SalesManagementApplication.Models.Sale>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center my-4">List of sales, odered by date.</h1>
+
+<a asp-action="Create" class="link-primary my-3 text-center d-block">New Sale</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seller.LastName), @Html.DisplayFor(modelItem => item.Seller.Name)
+            </td>
+            <td p-0 p-sm-1>
+                <a asp-action="Edit" asp-route-id="@item.SaleId" class="link-primary">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.SaleId" class="link-info">Details</a> 
+                <a asp-action="Delete" asp-route-id="@item.SaleId" class="link-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

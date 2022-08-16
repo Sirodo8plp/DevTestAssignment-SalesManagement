@@ -1,0 +1,31 @@
+﻿@model SalesManagementApplication.Models.Seller
+
+@{
+    ViewData["Title"] = $"Delete {Model.Name} {Model.LastName}";
+}
+
+<h1 class="my-4 text-center">Are you sure you want to remove @Model.LastName @Model.Name ?</h1>
+
+<hr />
+
+<dl class="row mx-auto mb-3" style="max-width: max-content;">
+    <dt class="col-6 text-center">
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd class="col-6 text-center">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt class="col-6 text-center">
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+    <dd class="col-6 text-center">
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+</dl>
+
+<form asp-action="Delete"class="mt-3 d-flex flex-column align-items-center">
+    <input type="hidden" asp-for="SellerId" />
+    <input type="submit" value="Delete" class="btn btn-danger" class="btn btn-danger mb-3" style="max-width: max-content;" /> 
+    <a asp-action="Index" class="link-dark mt-3">Back to List</a>
+</form>
+

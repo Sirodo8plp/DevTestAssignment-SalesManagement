@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SalesManagementApplication.Models.Seller>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section links {
+    <link rel="stylesheet" href="~/css/sellers.css" asp-append-version="true" />
+}
+
+    <h1 class="text-center my-4">List of sellers.</h1>
+
+    <a asp-action="Create" class="link-primary my-3 text-center d-block">Add a new seller</a>
+
+    <table class="table" style="overflow-x: auto">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>Commission</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @(item.Sales != null ? (item.Sales.Sum(sale => sale.Price) * 0.10m).ToString("C") : 0)
+                </td>
+                <td p-0 p-sm-1>
+                    <a asp-action="Edit" asp-route-id="@item.SellerId" class="link-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.SellerId" class="link-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.SellerId" class="link-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

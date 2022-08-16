@@ -1,0 +1,40 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+td {
+    max-width: 3rem;
+    overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 27.5em) {
+    td {
+        padding: 0 !important;
+    }
+}
+
+.customButton {
+    background-color: rgba(123, 45, 38, 0.7) !important;
+    border: rgba(123, 45, 38, 0.7) !important;
+}
+
+.customButton:hover {
+        background-color: rgba(123, 45, 38, 1) !important;
+        border: rgba(123, 45, 38, 1) !important;
+    }

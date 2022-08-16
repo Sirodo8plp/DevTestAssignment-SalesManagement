@@ -1,0 +1,36 @@
+﻿@model SalesManagementApplication.Models.Sale
+
+@{
+    ViewData["Title"] = $"Delete sale n.{Model.SaleId}";
+}
+
+<h1 class="my-4 text-center">Are you sure you want to delete sale n.@Model.SaleId?</h1>
+
+<hr />
+
+<dl class="row mx-auto mb-3" style="max-width: max-content;">
+    <dt class="col-6 text-center">
+        @Html.DisplayNameFor(model => model.Price)
+    </dt>
+    <dd class="col-6 text-center">
+        @Html.DisplayFor(model => model.Price)
+    </dd>
+    <dt class="col-6 text-center">
+        @Html.DisplayNameFor(model => model.CreatedDate)
+    </dt>
+    <dd class="col-6 text-center">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </dd>
+    <dt class="col-6 text-center">
+        @Html.DisplayNameFor(model => model.Seller)
+    </dt>
+    <dd class="col-6 text-center">
+        @Html.DisplayFor(model => model.Seller.LastName)
+    </dd>
+</dl>
+
+<form asp-action="Delete" class="mt-3 d-flex flex-column align-items-center">
+    <input type="hidden" asp-for="SaleId" />
+    <input type="submit" value="Delete" class="btn btn-danger mb-3" style="max-width: max-content;" />
+    <a asp-action="Index" class="link-dark mt-3">Back to List</a>
+</form>

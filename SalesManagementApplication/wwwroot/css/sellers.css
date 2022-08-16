@@ -1,0 +1,17 @@
+﻿.heading {
+    max-width: max-content;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(123, 45, 38, 1);
+    color: #F0F3F5;
+    margin-top: 1rem;
+}
+
+.tableContainer {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.tableContainer table {
+    width: 100%;
+}
