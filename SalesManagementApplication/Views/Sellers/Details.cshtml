@@ -84,13 +84,13 @@
     });
 
     function addData(data) {
-        if (data) {
+        console.log(data);
+        if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
                 sales.push({
                     label: data[i].Month,
                     y: data[i].TotalSales
                 });
-                console.log(data[i].Commission);
                 commission.push({
                     label: data[i].Month,
                     y: data[i].Commission
@@ -99,7 +99,7 @@
             chart.render();
             return;
         }
-
+        $("#salesGraph").replaceWith("<p class='text-center mt-3'>Apparently, @Model.LastName @Model.Name has not made any sales yet.</p>");
     }
 
     $.getJSON("/sellers/monthlysales/@Model!.SellerId", addData);
